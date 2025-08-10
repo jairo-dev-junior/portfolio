@@ -1,0 +1,46 @@
+---
+description:
+globs:
+alwaysApply: true
+name: "portfolio"
+title: "Gerador de Portfolio"
+description: |
+  Regra para gerar scaffold e conteúdo para um site/portfolio pessoal.
+  Quando invocada, cria páginas iniciais, componentes e um README com instruções.
+scope: ["**/*"]
+triggers:
+  - phrase: "criar portfolio"
+  - phrase: "gerar portfolio"
+  - mention: "@portfolio"
+  - file-glob: "portfolio/**"
+actions:
+  - type: "generate"
+    when: "invoked"
+    prompt: |
+      Você é um assistente que gera um portfolio web moderno.
+      Pergunte ao usuário (se necessário) sobre:
+        - Nome do autor
+        - Bio curta (1-2 frases)
+        - Links (github, linkedin, email)
+        - 3 projetos com título, descrição curta, tech stack e link (se tiver)
+        - Preferência de stack: (static HTML/CSS, React+Tailwind, Next.js, Gatsby)
+      Então gere:
+        1) Estrutura de pastas: /portfolio/index.html (ou /src para React), /portfolio/styles/, /portfolio/assets/
+        2) Um README com instruções de instalação/como rodar/como personalizar
+        3) Código pronto para as páginas: home, about, projects, contact
+        4) Exemplos de componentes (header, project-card, footer)
+      Siga o estilo: design limpo, responsivo, foco em performance e SEO. Forneça também commit message sugerida e checklist de deploy.
+  - type: "file"
+    when: "after_generate"
+    file_path: "portfolio/README.md"
+    content: |
+      # Portfolio gerado pelo Cursor Rule "portfolio"
+      ## Como usar
+      1. Edite `meta.json` com seus dados pessoais.
+      2. Se escolheu React: rode `npm install` e `npm run dev`.
+      3. Se escolheu HTML: abra `index.html`.
+      ## Checklist
+      - [ ] Atualizar textos
+      - [ ] Substituir imagens
+      - [ ] Testar responsividade
+---

@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #2563eb;
+  --color-accent: #1d4ed8;
+  --color-surface: #ffffff;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+/* Scroll suave nativo */
+html { scroll-behavior: smooth; }
+
+/* Tipografia e suavização */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} 
