@@ -51,7 +51,7 @@ function App() {
         locationLabel={t.contacts.location}
         githubLabel={t.contacts.github}
         linkedinLabel={t.contacts.linkedin}
-        siteLabel={t.contacts.site}
+        devtoLabel={t.contacts.devto}
       />
       <Footer />
     </div>

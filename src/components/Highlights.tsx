@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaGithub } from 'react-icons/fa';
+import { FaDev } from 'react-icons/fa';
 
 interface ExperienceItem {
   empresa: string;
@@ -17,61 +17,35 @@ interface HighlightsProps {
   experiences: readonly ExperienceItem[];
 }
 
-interface GitHubRepo {
+interface DevToArticle {
   id: number;
-  name: string;
-  html_url: string;
-  language: string | null;
-  stargazers_count: number;
-  fork: boolean;
+  title: string;
+  description: string;
+  url: string;
+  published_at: string;
+  tag_list: string[];
 }
 
-interface RepositoryCard extends GitHubRepo {
-  descriptionFromReadme: string;
-}
-
-const OWNER = 'jairo-dev-junior';
-
-function pickShortDescription(readme: string): string {
-  const cleanLines = readme
-    .replace(/```[\s\S]*?```/g, ' ')
-    .split('\n')
-    .map((line) => line.replace(/^#+\s*/, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').trim())
-    .filter((line) => line.length > 28);
-
-  const first = cleanLines[0];
-  if (!first) return 'Projeto com foco em backend e arquitetura.';
-  return first.length > 105 ? `${first.slice(0, 102)}...` : first;
-}
+const DEVTO_USERNAME = 'jairo-dev-jr';
 
 export function Highlights({ projectsTitle, projectsSubtitle, projectsEmpty, careerTitle, experiences }: HighlightsProps) {
-  const [repos, setRepos] = useState<RepositoryCard[]>([]);
+  const [articles, setArticles] = useState<DevToArticle[]>([]);
 
   useEffect(() => {
     let active = true;
 
-    async function loadRepos() {
+    async function loadArticles() {
       try {
-        const reposResponse = await fetch(`https://api.github.com/users/${OWNER}/repos?per_page=100&sort=updated`);
-        const reposData = (await reposResponse.json()) as GitHubRepo[];
-        if (!Array.isArray(reposData)) return;
-
-        const selectedRepos = reposData.filter((repo) => !repo.fork).sort((a, b) => b.stargazers_count - a.stargazers_count).slice(0, 6);
-        const cards = await Promise.all(selectedRepos.map(async (repo) => {
-          const readmeResponse = await fetch(`https://api.github.com/repos/${OWNER}/${repo.name}/readme`, {
-            headers: { Accept: 'application/vnd.github.raw+json' }
-          });
-          const readmeText = readmeResponse.ok ? await readmeResponse.text() : '';
-          return { ...repo, descriptionFromReadme: pickShortDescription(readmeText) };
-        }));
-
-        if (active) setRepos(cards);
+        const response = await fetch(`https://dev.to/api/articles?username=${DEVTO_USERNAME}&per_page=6`);
+        const data = (await response.json()) as DevToArticle[];
+        if (!Array.isArray(data)) return;
+        if (active) setArticles(data);
       } catch {
-        if (active) setRepos([]);
+        if (active) setArticles([]);
       }
     }
 
-    loadRepos();
+    loadArticles();
     return () => { active = false; };
   }, []);
 
@@ -82,14 +56,16 @@ export function Highlights({ projectsTitle, projectsSubtitle, projectsEmpty, car
           <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{projectsTitle}</h2>
           <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{projectsSubtitle}</p>
           <div className="mt-4 space-y-2">
-            {repos.length === 0 && <p className="text-sm text-slate-500">{projectsEmpty}</p>}
-            {repos.map((repo) => (
-              <a key={repo.id} href={repo.html_url} target="_blank" rel="noreferrer" className="block border-b border-slate-300/80 py-3 text-sm hover:bg-cyan-100/40 dark:border-slate-800/80 dark:hover:bg-slate-900/30">
+            {articles.length === 0 && <p className="text-sm text-slate-500">{projectsEmpty}</p>}
+            {articles.map((article) => (
+              <a key={article.id} href={article.url} target="_blank" rel="noreferrer" className="block border-b border-slate-300/80 py-3 text-sm hover:bg-cyan-100/40 dark:border-slate-800/80 dark:hover:bg-slate-900/30">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="inline-flex items-center gap-2 font-medium text-fuchsia-700 dark:text-fuchsia-300"><FaGithub className="h-4 w-4" />{repo.name}</span>
-                  <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-slate-500">{repo.language ?? 'Code'}</span>
+                  <span className="inline-flex items-center gap-2 font-medium text-fuchsia-700 dark:text-fuchsia-300"><FaDev className="h-4 w-4" />{article.title}</span>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-slate-500">
+                    {new Date(article.published_at).toLocaleDateString('pt-BR')}
+                  </span>
                 </div>
-                <p className="mt-1 text-slate-700 dark:text-slate-300">{repo.descriptionFromReadme}</p>
+                <p className="mt-1 text-slate-700 dark:text-slate-300">{article.description || 'Confira o artigo completo no Dev.to.'}</p>
               </a>
             ))}
           </div>
