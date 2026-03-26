@@ -106,7 +106,7 @@ export function Highlights({ projectsTitle, projectsSubtitle, projectsEmpty, car
                 </div>
                 <p className="mt-1 text-xs uppercase tracking-[0.08em] text-cyan-700 dark:text-cyan-300">{job.cargo}</p>
                 <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">{job.resumo}</p>
-                <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.08em] text-fuchsia-700 dark:text-fuchsia-300">⚔️ {job.rpg}</p>
+                <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.08em] text-fuchsia-700 dark:text-fuchsia-300">🦾 {job.rpg}</p>
               </li>
             ))}
           </ol>
