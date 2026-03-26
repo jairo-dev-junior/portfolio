@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&family=Orbitron:wght@500;700;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -96,4 +96,9 @@ body {
   letter-spacing: 0.05em;
   text-transform: uppercase;
   text-shadow: 0 0 8px rgba(34, 211, 238, 0.35), 0 0 18px rgba(217, 70, 239, 0.2);
+}
+
+.synthwave-subtitle {
+  font-family: "Exo 2", "Rajdhani", "Segoe UI", sans-serif;
+  letter-spacing: 0.03em;
 }

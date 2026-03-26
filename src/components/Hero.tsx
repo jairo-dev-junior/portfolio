@@ -37,7 +37,7 @@ export function Hero({ title, subtitle }: HeroProps) {
           </h1>
         </div>
 
-        <p className="mt-8 max-w-3xl text-base leading-relaxed text-slate-700 dark:text-slate-300">{subtitle}</p>
+        <p className="synthwave-subtitle mt-8 max-w-3xl text-base leading-relaxed text-slate-700 dark:text-slate-300">{subtitle}</p>
       </div>
       <a href="#galeria" className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[11px] uppercase tracking-[0.16em] text-slate-500 hover:text-cyan-600 dark:hover:text-cyan-300">
         ↓ ver mais
