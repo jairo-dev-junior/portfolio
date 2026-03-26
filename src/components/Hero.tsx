@@ -1,5 +1,4 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useMemo, useState } from 'react';
 
 interface HeroProps {
   title: string;
@@ -9,38 +8,42 @@ interface HeroProps {
 }
 
 export function Hero({ title, subtitle }: HeroProps) {
-  const heroVariants = {
-    hidden: { opacity: 0, y: 24 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  };
+  const [typedTitle, setTypedTitle] = useState('');
+  const characters = useMemo(() => Array.from(title), [title]);
+
+  useEffect(() => {
+    setTypedTitle('');
+    let index = 0;
+    const timer = window.setInterval(() => {
+      index += 1;
+      setTypedTitle(characters.slice(0, index).join(''));
+      if (index >= characters.length) {
+        window.clearInterval(timer);
+      }
+    }, 45);
+
+    return () => window.clearInterval(timer);
+  }, [characters]);
+
   return (
-    <section className="relative">
-      <div className="mx-auto max-w-7xl px-4 py-14">
-        <motion.div variants={heroVariants} initial="hidden" animate="show" className="grid items-center gap-10 md:grid-cols-2">
-          <div className="text-left">
-            <h1 className="bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-accent)] bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-5xl">
-              {title}
-            </h1>
-            <p className="mt-4 max-w-2xl text-sm text-slate-600 dark:text-slate-300">
-              {subtitle}
-            </p>
-          </div>
-          <div className="flex justify-center md:justify-end">
-            <div className="h-40 w-40 overflow-hidden rounded-full ring-4 ring-[color:var(--color-primary)]/40 sm:h-48 sm:w-48 md:h-56 md:w-56">
-              <motion.img
-                src="/images/perfil.jpeg"
-                alt="Foto de perfil"
-                className="h-full w-full object-cover"
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-              />
-            </div>
-          </div>
-        </motion.div>
+    <section className="relative flex min-h-[calc(100vh-60px)] items-center border-b border-slate-300/80 dark:border-slate-800/80">
+      <div className="mx-auto max-w-6xl px-4">
+        <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">backend engineer</p>
+
+        <div className="relative mt-4 max-w-5xl">
+          <h1 className="hero-neon-title max-w-4xl text-4xl font-bold leading-tight text-slate-900 dark:text-slate-100 sm:text-6xl">
+            <span className="text-fuchsia-700 dark:text-fuchsia-300">{typedTitle}</span>
+            <span aria-hidden="true" className="typing-caret">|</span>
+          </h1>
+        </div>
+
+        <p className="synthwave-subtitle mt-8 max-w-3xl text-base leading-relaxed text-slate-700 dark:text-slate-300">{subtitle}</p>
       </div>
+      <a href="#galeria" className="absolute bottom-6 left-1/2 -translate-x-1/2 font-mono text-[11px] uppercase tracking-[0.16em] text-slate-500 hover:text-cyan-600 dark:hover:text-cyan-300">
+        ↓ ver mais
+      </a>
     </section>
   );
 }
-export default Hero; 
+
+export default Hero;

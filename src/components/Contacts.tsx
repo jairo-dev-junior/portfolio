@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaGlobe } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 
 interface ContactsProps {
   locationLabel: string;
@@ -8,34 +8,27 @@ interface ContactsProps {
   siteLabel: string;
 }
 
-export function Contacts({ locationLabel, githubLabel, linkedinLabel, siteLabel }: ContactsProps) {
+export function Contacts({ locationLabel, githubLabel, linkedinLabel }: ContactsProps) {
   return (
     <section id="contatos" className="relative scroll-mt-24">
-      <div className="mx-auto max-w-7xl px-4 py-12">
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="flex items-center gap-3 rounded-3xl bg-white/60 p-4 shadow-sm backdrop-blur dark:bg-slate-900/50">
-            <FaMapMarkerAlt className="h-5 w-5 text-[color:var(--color-primary)]" />
-            <span className="text-sm">{locationLabel}</span>
-          </div>
-          <a href="tel:+5514988051895" className="flex items-center gap-3 rounded-3xl bg-white/60 p-4 shadow-sm backdrop-blur transition hover:shadow-md dark:bg-slate-900/50">
-            <FaPhone className="h-5 w-5 text-[color:var(--color-primary)]" />
-            <span className="text-sm">+55 14 988-051-895</span>
-          </a>
-          <a href="mailto:jairojunior.dev@gmail.com" className="flex items-center gap-3 rounded-3xl bg-white/60 p-4 shadow-sm backdrop-blur transition hover:shadow-md dark:bg-slate-900/50">
-            <FaEnvelope className="h-5 w-5 text-[color:var(--color-primary)]" />
-            <span className="text-sm">jairojunior.dev@gmail.com</span>
-          </a>
-          <div className="flex items-center gap-3 rounded-3xl bg-white/60 p-4 shadow-sm backdrop-blur dark:bg-slate-900/50">
-            <a href="https://github.com/jairo-dev-junior" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-medium text-slate-800 shadow-sm ring-1 ring-slate-200 hover:bg-slate-50 dark:bg-slate-950 dark:text-slate-200 dark:ring-slate-700">
+      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-14 md:grid-cols-[180px_1fr]">
+        <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">contato</h2>
+        <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
+          <p><FaMapMarkerAlt className="mr-2 inline text-cyan-700 dark:text-cyan-300" />{locationLabel}</p>
+          <p><FaPhone className="mr-2 inline text-cyan-700 dark:text-cyan-300" />+55 14 988-051-895</p>
+          <p><FaEnvelope className="mr-2 inline text-cyan-700 dark:text-cyan-300" />jairojunior.dev@gmail.com</p>
+          <p>
+            <a href="https://github.com/jairo-dev-junior" target="_blank" rel="noreferrer" className="mr-4 inline-flex items-center gap-2 text-fuchsia-700 hover:text-fuchsia-500 dark:text-fuchsia-200 dark:hover:text-fuchsia-300">
               <FaGithub /> {githubLabel}
             </a>
-            <a href="https://www.linkedin.com/in/jairo-junior-496a4b14a/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-accent)] px-4 py-2 text-xs font-semibold text-white shadow-sm hover:opacity-95">
+            <a href="https://www.linkedin.com/in/jairo-junior-496a4b14a/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-fuchsia-700 hover:text-fuchsia-500 dark:text-fuchsia-200 dark:hover:text-fuchsia-300">
               <FaLinkedin /> {linkedinLabel}
             </a>
-          </div>
+          </p>
         </div>
       </div>
     </section>
   );
 }
-export default Contacts; 
+
+export default Contacts;
