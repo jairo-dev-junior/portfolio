@@ -15,8 +15,13 @@ export const messages = {
     },
     tech: { title: 'Stack principal', backend: 'Backend', frontend: 'Frontend de apoio' },
     projects: {
+      title: 'Repositórios do GitHub',
+      subtitle: 'Seleção automática dos meus repositórios públicos com destaques de backend.',
+      empty: 'Não consegui carregar os repositórios agora. Tente novamente em instantes.'
+    },
+    articles: {
       title: 'Grimório de Artigos: aventuras reais em backend',
-      subtitle: 'Textos publicados no meu Dev.to com aprendizados, arquitetura e histórias de produção.',
+      subtitle: 'Apenas artigos do meu Dev.to com aprendizados, arquitetura e histórias de produção.',
       empty: 'Não consegui carregar os artigos agora. Tente novamente em instantes.'
     },
     career: {
@@ -45,8 +50,13 @@ export const messages = {
     },
     tech: { title: 'Main stack', backend: 'Backend', frontend: 'Support frontend' },
     projects: {
+      title: 'GitHub repositories',
+      subtitle: 'Automatic selection of my public repositories with backend-focused highlights.',
+      empty: 'I could not load repositories right now. Please try again soon.'
+    },
+    articles: {
       title: 'Article Grimoire: real-world backend quests',
-      subtitle: 'Posts published on my Dev.to sharing lessons learned, architecture choices and production stories.',
+      subtitle: 'Only articles from my Dev.to with lessons learned, architecture choices and production stories.',
       empty: 'I could not load articles right now. Please try again soon.'
     },
     career: {

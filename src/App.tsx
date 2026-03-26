@@ -40,9 +40,12 @@ function App() {
       <Hero title={t.hero.title} subtitle={t.hero.subtitle} btnView={t.hero.btnView} btnSite={t.hero.btnSite} />
       <ImageCarousel />
       <Highlights
-        projectsTitle={t.projects.title}
-        projectsSubtitle={t.projects.subtitle}
-        projectsEmpty={t.projects.empty}
+        githubTitle={t.projects.title}
+        githubSubtitle={t.projects.subtitle}
+        githubEmpty={t.projects.empty}
+        articlesTitle={t.articles.title}
+        articlesSubtitle={t.articles.subtitle}
+        articlesEmpty={t.articles.empty}
         careerTitle={t.career.title}
         experiences={t.career.items}
       />
