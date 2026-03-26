@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Highlights from './components/Highlights';
 import StackCarousel from './components/StackCarousel';
 import ImageCarousel from './components/ImageCarousel';
+import DevToArticlesCarousel from './components/DevToArticlesCarousel';
 import useTheme from './hooks/useTheme';
 import useLocale from './hooks/useLocale';
 import usePaletteFromImage from './hooks/usePaletteFromImage';
@@ -43,11 +44,13 @@ function App() {
         githubTitle={t.projects.title}
         githubSubtitle={t.projects.subtitle}
         githubEmpty={t.projects.empty}
-        articlesTitle={t.articles.title}
-        articlesSubtitle={t.articles.subtitle}
-        articlesEmpty={t.articles.empty}
         careerTitle={t.career.title}
         experiences={t.career.items}
+      />
+      <DevToArticlesCarousel
+        title={t.articles.title}
+        subtitle={t.articles.subtitle}
+        emptyLabel={t.articles.empty}
       />
       <StackCarousel title={t.tech.title} />
       <Contacts
