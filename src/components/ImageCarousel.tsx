@@ -24,7 +24,7 @@ export function ImageCarousel() {
                 key={`${src}-${index}`}
                 src={src}
                 alt="Foto pessoal"
-                className="h-24 w-24 rounded-full border border-cyan-500/40 object-cover"
+                className="gallery-item h-24 w-24 rounded-full border border-cyan-500/40 object-cover transition-transform duration-300 hover:scale-110"
                 loading="lazy"
               />
             ))}
