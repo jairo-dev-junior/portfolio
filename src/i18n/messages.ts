@@ -16,8 +16,13 @@ export const messages = {
     tech: { title: 'Stack principal', backend: 'Backend', frontend: 'Frontend de apoio' },
     projects: {
       title: 'Repositórios do GitHub',
-      subtitle: 'Seleção automática dos meus repositórios públicos, com descrições curtas extraídas do README de cada projeto.',
+      subtitle: 'Seleção automática dos meus repositórios públicos com destaques de backend.',
       empty: 'Não consegui carregar os repositórios agora. Tente novamente em instantes.'
+    },
+    articles: {
+      title: 'Grimório de Artigos: aventuras reais em backend',
+      subtitle: 'Apenas artigos do meu Dev.to com aprendizados, arquitetura e histórias de produção.',
+      empty: 'Não consegui carregar os artigos agora. Tente novamente em instantes.'
     },
     career: {
       title: 'Experiência profissional',
@@ -28,7 +33,7 @@ export const messages = {
         { empresa: 'AGTI', cargo: 'Full Stack', periodo: '05/2019 - 05/2020', resumo: 'Criação de plugins em PHP para e-commerce.', rpg: 'Classe: Ferreiro de Plugins' }
       ]
     },
-    contacts: { location: 'Lins, São Paulo', github: 'GitHub', linkedin: 'LinkedIn', site: 'Site' },
+    contacts: { location: 'Lins, São Paulo', github: 'GitHub', linkedin: 'LinkedIn', devto: 'Dev.to' },
     downloadCV: 'Baixar CV',
   },
   en: {
@@ -46,8 +51,13 @@ export const messages = {
     tech: { title: 'Main stack', backend: 'Backend', frontend: 'Support frontend' },
     projects: {
       title: 'GitHub repositories',
-      subtitle: 'Automatic selection of my public repositories with short descriptions extracted from each project README.',
+      subtitle: 'Automatic selection of my public repositories with backend-focused highlights.',
       empty: 'I could not load repositories right now. Please try again soon.'
+    },
+    articles: {
+      title: 'Article Grimoire: real-world backend quests',
+      subtitle: 'Only articles from my Dev.to with lessons learned, architecture choices and production stories.',
+      empty: 'I could not load articles right now. Please try again soon.'
     },
     career: {
       title: 'Professional experience',
@@ -58,7 +68,7 @@ export const messages = {
         { empresa: 'AGTI', cargo: 'Full Stack', periodo: '05/2019 - 05/2020', resumo: 'Plugin crafting in PHP for e-commerce.', rpg: 'Class: Plugin Blacksmith' }
       ]
     },
-    contacts: { location: 'Lins, São Paulo', github: 'GitHub', linkedin: 'LinkedIn', site: 'Site' },
+    contacts: { location: 'Lins, São Paulo', github: 'GitHub', linkedin: 'LinkedIn', devto: 'Dev.to' },
     downloadCV: 'Download CV',
   }
 } as const;

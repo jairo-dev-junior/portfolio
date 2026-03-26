@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Highlights from './components/Highlights';
 import StackCarousel from './components/StackCarousel';
 import ImageCarousel from './components/ImageCarousel';
+import DevToArticlesCarousel from './components/DevToArticlesCarousel';
 import useTheme from './hooks/useTheme';
 import useLocale from './hooks/useLocale';
 import usePaletteFromImage from './hooks/usePaletteFromImage';
@@ -40,18 +41,23 @@ function App() {
       <Hero title={t.hero.title} subtitle={t.hero.subtitle} btnView={t.hero.btnView} btnSite={t.hero.btnSite} />
       <ImageCarousel />
       <Highlights
-        projectsTitle={t.projects.title}
-        projectsSubtitle={t.projects.subtitle}
-        projectsEmpty={t.projects.empty}
+        githubTitle={t.projects.title}
+        githubSubtitle={t.projects.subtitle}
+        githubEmpty={t.projects.empty}
         careerTitle={t.career.title}
         experiences={t.career.items}
+      />
+      <DevToArticlesCarousel
+        title={t.articles.title}
+        subtitle={t.articles.subtitle}
+        emptyLabel={t.articles.empty}
       />
       <StackCarousel title={t.tech.title} />
       <Contacts
         locationLabel={t.contacts.location}
         githubLabel={t.contacts.github}
         linkedinLabel={t.contacts.linkedin}
-        siteLabel={t.contacts.site}
+        devtoLabel={t.contacts.devto}
       />
       <Footer />
     </div>
