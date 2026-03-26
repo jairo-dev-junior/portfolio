@@ -2,11 +2,10 @@ import React from 'react';
 
 export function Footer() {
   return (
-    <footer className="py-8 text-center text-xs text-slate-600 dark:text-slate-400">
-      <div className="mx-auto max-w-7xl px-4">
-        <p>&copy; {new Date().getFullYear()} Jairo Junior. Todos os direitos reservados.</p>
-      </div>
+    <footer className="border-t border-slate-300/80 py-6 text-center font-mono text-[11px] uppercase tracking-[0.12em] text-slate-500 dark:border-slate-800/80">
+      <p>&copy; {new Date().getFullYear()} Jairo Junior</p>
     </footer>
   );
 }
-export default Footer; 
+
+export default Footer;

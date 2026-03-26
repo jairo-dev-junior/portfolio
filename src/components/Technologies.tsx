@@ -10,19 +10,16 @@ interface TechnologiesProps {
 
 export function Technologies({ title, backendLabel, frontendLabel }: TechnologiesProps) {
   return (
-    <section id="tecnologias" className="relative scroll-mt-24">
-      <div className="mx-auto max-w-7xl px-4 py-12">
-        <h2 className="mb-6 text-center text-xl font-bold text-slate-900 dark:text-slate-100">{title}</h2>
-        <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-3xl bg-white/60 p-8 shadow-sm backdrop-blur dark:bg-slate-900/50">
-            <TechnologyGroup title={backendLabel} items={backendTech} />
-          </div>
-          <div className="rounded-3xl bg-white/60 p-8 shadow-sm backdrop-blur dark:bg-slate-900/50">
-            <TechnologyGroup title={frontendLabel} items={frontendTech} />
-          </div>
+    <section id="tecnologias" className="relative border-b border-slate-300/80 scroll-mt-24 dark:border-slate-800/80">
+      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-14 md:grid-cols-[180px_1fr]">
+        <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{title}</h2>
+        <div className="space-y-5">
+          <TechnologyGroup title={backendLabel} items={backendTech} />
+          <TechnologyGroup title={frontendLabel} items={frontendTech} />
         </div>
       </div>
     </section>
   );
 }
-export default Technologies; 
+
+export default Technologies;
