@@ -1,51 +1,29 @@
 import React from 'react';
-import ReactCountryFlag from 'react-country-flag';
 import { FiMoon, FiSun } from 'react-icons/fi';
 import type { Locale } from '../hooks/useLocale';
 
 interface HeaderProps {
-  labels: { tecnologias: string; projetos: string; carreira: string; contatos: string };
   downloadCVLabel: string;
   isDark: boolean;
   toggleTheme: () => void;
   locale: Locale;
   setLocale: (l: Locale) => void;
-  onNavigate: (href: string) => void;
 }
 
-export function Header({ labels, downloadCVLabel, isDark, toggleTheme, locale, setLocale, onNavigate }: HeaderProps) {
+export function Header({ downloadCVLabel, isDark, toggleTheme, locale, setLocale }: HeaderProps) {
   return (
     <header className="sticky top-0 z-20 border-b border-cyan-600/20 bg-slate-100/80 backdrop-blur-xl dark:border-cyan-400/20 dark:bg-[#090910]/80">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <a href="/" className="font-mono text-sm uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-200">Jairo Junior</a>
-
-        <nav className="hidden items-center gap-5 md:flex">
-          {[
-            { href: '#tecnologias', label: labels.tecnologias },
-            { href: '#projetos', label: labels.projetos },
-            { href: '#carreira', label: labels.carreira },
-            { href: '#contatos', label: labels.contatos }
-          ].map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate(link.href);
-              }}
-              className="text-xs uppercase tracking-[0.12em] text-slate-700 transition hover:text-fuchsia-600 dark:text-slate-300 dark:hover:text-fuchsia-300"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+      <div className="relative mx-auto flex max-w-6xl items-center justify-end px-4 py-3">
+        <a href="/" className="absolute left-1/2 -translate-x-1/2 text-center font-mono text-sm uppercase tracking-[0.22em] text-cyan-700 dark:text-cyan-200">
+          JAIRO DEV JUNIOR
+        </a>
 
         <div className="flex items-center gap-2">
-          <button aria-label="Português" onClick={() => setLocale('pt')} className={`rounded p-1 ${locale === 'pt' ? 'ring-1 ring-cyan-500/70 dark:ring-cyan-300/70' : ''}`}>
-            <ReactCountryFlag svg countryCode="BR" style={{ width: '16px', height: '16px' }} aria-label="Português" />
+          <button aria-label="Português" onClick={() => setLocale('pt')} className={`rounded border px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] ${locale === 'pt' ? 'border-cyan-500 text-cyan-700 dark:border-cyan-300 dark:text-cyan-200' : 'border-slate-400 text-slate-600 dark:border-slate-700 dark:text-slate-300'}`}>
+            PT
           </button>
-          <button aria-label="English" onClick={() => setLocale('en')} className={`rounded p-1 ${locale === 'en' ? 'ring-1 ring-cyan-500/70 dark:ring-cyan-300/70' : ''}`}>
-            <ReactCountryFlag svg countryCode="US" style={{ width: '16px', height: '16px' }} aria-label="English" />
+          <button aria-label="English" onClick={() => setLocale('en')} className={`rounded border px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] ${locale === 'en' ? 'border-cyan-500 text-cyan-700 dark:border-cyan-300 dark:text-cyan-200' : 'border-slate-400 text-slate-600 dark:border-slate-700 dark:text-slate-300'}`}>
+            ENG
           </button>
           <a href="/Curriculo_Jairo_Junior.pdf" className="hidden border border-fuchsia-500/50 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-fuchsia-700 dark:text-fuchsia-200 md:inline" download>
             {downloadCVLabel}

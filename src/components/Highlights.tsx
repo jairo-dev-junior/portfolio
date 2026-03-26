@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 
+interface ExperienceItem {
+  empresa: string;
+  cargo: string;
+  periodo: string;
+  resumo: string;
+  rpg: string;
+}
+
 interface HighlightsProps {
   projectsTitle: string;
   projectsSubtitle: string;
   projectsEmpty: string;
   careerTitle: string;
+  experiences: readonly ExperienceItem[];
 }
 
 interface GitHubRepo {
@@ -35,14 +44,7 @@ function pickShortDescription(readme: string): string {
   return first.length > 105 ? `${first.slice(0, 102)}...` : first;
 }
 
-const experiences = [
-  { empresa: 'Mercado Livre', cargo: 'Backend Engineer', periodo: '05/2021 - Presente', resumo: 'Quest principal: APIs e serviços escaláveis com Kotlin e Micronaut.', rpg: 'Guilda: Arcanista' },
-  { empresa: 'Tudu', cargo: 'Frontend', periodo: '10/2020 - 05/2021', resumo: 'Quest de interface e jornada do usuário em páginas de loja.', rpg: 'Classe: Bardo UI' },
-  { empresa: 'Vibe', cargo: 'Full Stack', periodo: '02/2020 - 10/2020', resumo: 'Missões full stack em Java (Play) e AngularJS.', rpg: 'Classe: Ranger Fullstack' },
-  { empresa: 'AGTI', cargo: 'Full Stack', periodo: '05/2019 - 05/2020', resumo: 'Criação de plugins em PHP para e-commerce.', rpg: 'Classe: Ferreiro de Plugins' }
-];
-
-export function Highlights({ projectsTitle, projectsSubtitle, projectsEmpty, careerTitle }: HighlightsProps) {
+export function Highlights({ projectsTitle, projectsSubtitle, projectsEmpty, careerTitle, experiences }: HighlightsProps) {
   const [repos, setRepos] = useState<RepositoryCard[]>([]);
 
   useEffect(() => {
@@ -97,7 +99,7 @@ export function Highlights({ projectsTitle, projectsSubtitle, projectsEmpty, car
           <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{careerTitle}</h2>
           <ol className="mt-4 space-y-3">
             {experiences.map((job) => (
-              <li key={job.empresa} className="border-b border-slate-300/80 pb-3 dark:border-slate-800/80">
+              <li key={`${job.empresa}-${job.periodo}`} className="border-b border-slate-300/80 pb-3 dark:border-slate-800/80">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">{job.empresa}</p>
                   <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-slate-500">{job.periodo}</p>

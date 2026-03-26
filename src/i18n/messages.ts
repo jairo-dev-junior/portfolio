@@ -2,7 +2,7 @@ export type Locale = 'pt' | 'en';
 
 export const messages = {
   pt: {
-    menu: { sobre: 'Sobre', tecnologias: 'Stack', projetos: 'Projetos', carreira: 'Carreira', contatos: 'Contatos' },
+    menu: { tecnologias: 'Stack', projetos: 'Projetos', carreira: 'Carreira', contatos: 'Contatos' },
     hero: {
       title: 'Backend Engineer que entrega software rápido, limpo e escalável',
       subtitle: 'Construo APIs, integrações e arquitetura para sistemas que precisam performar. Java/Kotlin, Spring/Micronaut, bancos relacionais e observabilidade fazem parte do meu dia a dia.',
@@ -19,12 +19,20 @@ export const messages = {
       subtitle: 'Seleção automática dos meus repositórios públicos, com descrições curtas extraídas do README de cada projeto.',
       empty: 'Não consegui carregar os repositórios agora. Tente novamente em instantes.'
     },
-    career: { title: 'Experiência profissional' },
+    career: {
+      title: 'Experiência profissional',
+      items: [
+        { empresa: 'Mercado Livre', cargo: 'Backend Engineer', periodo: '05/2021 - Presente', resumo: 'Quest principal: APIs e serviços escaláveis com Kotlin e Micronaut.', rpg: 'Guilda: Arcanista' },
+        { empresa: 'Tudu', cargo: 'Frontend', periodo: '10/2020 - 05/2021', resumo: 'Quest de interface e jornada do usuário em páginas de loja.', rpg: 'Classe: Bardo UI' },
+        { empresa: 'Vibe', cargo: 'Full Stack', periodo: '02/2020 - 10/2020', resumo: 'Missões full stack em Java (Play) e AngularJS.', rpg: 'Classe: Ranger Fullstack' },
+        { empresa: 'AGTI', cargo: 'Full Stack', periodo: '05/2019 - 05/2020', resumo: 'Criação de plugins em PHP para e-commerce.', rpg: 'Classe: Ferreiro de Plugins' }
+      ]
+    },
     contacts: { location: 'Lins, São Paulo', github: 'GitHub', linkedin: 'LinkedIn', site: 'Site' },
     downloadCV: 'Baixar CV',
   },
   en: {
-    menu: { sobre: 'About', tecnologias: 'Stack', projetos: 'Projects', carreira: 'Career', contatos: 'Contacts' },
+    menu: { tecnologias: 'Stack', projetos: 'Projects', carreira: 'Career', contatos: 'Contacts' },
     hero: {
       title: 'Backend Engineer focused on fast, clean and scalable delivery',
       subtitle: 'I build APIs, integrations and architecture for systems that need to perform. Java/Kotlin, Spring/Micronaut, relational databases and observability are my daily tools.',
@@ -41,7 +49,15 @@ export const messages = {
       subtitle: 'Automatic selection of my public repositories with short descriptions extracted from each project README.',
       empty: 'I could not load repositories right now. Please try again soon.'
     },
-    career: { title: 'Professional experience' },
+    career: {
+      title: 'Professional experience',
+      items: [
+        { empresa: 'Mercado Livre', cargo: 'Backend Engineer', periodo: '05/2021 - Present', resumo: 'Main quest: scalable APIs and services with Kotlin and Micronaut.', rpg: 'Guild: Arcanist' },
+        { empresa: 'Tudu', cargo: 'Frontend', periodo: '10/2020 - 05/2021', resumo: 'UI and user journey quests on e-commerce pages.', rpg: 'Class: UI Bard' },
+        { empresa: 'Vibe', cargo: 'Full Stack', periodo: '02/2020 - 10/2020', resumo: 'Full stack missions with Java (Play) and AngularJS.', rpg: 'Class: Fullstack Ranger' },
+        { empresa: 'AGTI', cargo: 'Full Stack', periodo: '05/2019 - 05/2020', resumo: 'Plugin crafting in PHP for e-commerce.', rpg: 'Class: Plugin Blacksmith' }
+      ]
+    },
     contacts: { location: 'Lins, São Paulo', github: 'GitHub', linkedin: 'LinkedIn', site: 'Site' },
     downloadCV: 'Download CV',
   }

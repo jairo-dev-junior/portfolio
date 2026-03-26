@@ -27,29 +27,15 @@ function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  function scrollToId(id: string) {
-    const target = document.getElementById(id);
-    if (!target) return;
-    const y = target.getBoundingClientRect().top + window.scrollY - 70;
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  }
-
-  function handleNavigate(href: string) {
-    if (!href.startsWith('#')) return;
-    scrollToId(href.slice(1));
-  }
-
   return (
     <div className="min-h-screen bg-slate-100 text-slate-900 dark:bg-[#0b0b11] dark:text-slate-100">
       <Background />
       <Header
-        labels={t.menu}
         downloadCVLabel={t.downloadCV}
         isDark={isDark}
         toggleTheme={toggleTheme}
         locale={locale}
         setLocale={setLocale}
-        onNavigate={handleNavigate}
       />
       <Hero title={t.hero.title} subtitle={t.hero.subtitle} btnView={t.hero.btnView} btnSite={t.hero.btnSite} />
       <ImageCarousel />
@@ -58,6 +44,7 @@ function App() {
         projectsSubtitle={t.projects.subtitle}
         projectsEmpty={t.projects.empty}
         careerTitle={t.career.title}
+        experiences={t.career.items}
       />
       <StackCarousel title={t.tech.title} />
       <Contacts
