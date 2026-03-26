@@ -14,15 +14,9 @@ export function Hero({ title, subtitle }: HeroProps) {
         <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">backend engineer</p>
 
         <div className="relative mt-4 max-w-5xl">
-          <h1 className="scan-text max-w-4xl text-4xl font-bold leading-tight text-slate-900 dark:text-slate-100 sm:text-6xl">
+          <h1 className="typing-title max-w-4xl text-4xl font-bold leading-tight text-slate-900 dark:text-slate-100 sm:text-6xl">
             <span className="text-fuchsia-700 dark:text-fuchsia-300">{title}</span>
           </h1>
-
-          <img
-            src="/images/perfil.jpeg"
-            alt="Jairo Junior"
-            className="hero-slide-image absolute right-0 top-1/2 h-24 w-24 -translate-y-1/2 rounded-full border border-cyan-500/60 object-cover shadow-[0_0_30px_rgba(34,211,238,0.22)] sm:h-28 sm:w-28"
-          />
         </div>
 
         <p className="mt-8 max-w-3xl text-base leading-relaxed text-slate-700 dark:text-slate-300">{subtitle}</p>
