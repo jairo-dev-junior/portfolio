@@ -10,16 +10,12 @@ interface TechnologiesProps {
 
 export function Technologies({ title, backendLabel, frontendLabel }: TechnologiesProps) {
   return (
-    <section id="tecnologias" className="relative scroll-mt-24">
-      <div className="mx-auto max-w-5xl px-4 py-10">
-        <h2 className="mb-4 text-lg font-semibold text-slate-100">{title}</h2>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="rounded-2xl border border-violet-500/20 bg-[#151624] p-5">
-            <TechnologyGroup title={backendLabel} items={backendTech} />
-          </div>
-          <div className="rounded-2xl border border-violet-500/20 bg-[#151624] p-5">
-            <TechnologyGroup title={frontendLabel} items={frontendTech} />
-          </div>
+    <section id="tecnologias" className="relative border-b border-slate-800/80 scroll-mt-24">
+      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-14 md:grid-cols-[180px_1fr]">
+        <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-300">{title}</h2>
+        <div className="space-y-5">
+          <TechnologyGroup title={backendLabel} items={backendTech} />
+          <TechnologyGroup title={frontendLabel} items={frontendTech} />
         </div>
       </div>
     </section>

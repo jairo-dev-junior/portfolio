@@ -9,12 +9,13 @@ interface HeroProps {
 
 export function Hero({ title, subtitle }: HeroProps) {
   return (
-    <section className="relative">
-      <div className="mx-auto max-w-5xl px-4 py-14">
-        <div className="rounded-2xl border border-violet-500/20 bg-[#151624] p-8">
-          <h1 className="text-2xl font-bold tracking-tight text-violet-200 sm:text-4xl">{title}</h1>
-          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-300">{subtitle}</p>
-        </div>
+    <section className="relative border-b border-slate-800/80">
+      <div className="mx-auto max-w-6xl px-4 py-20">
+        <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-300">backend systems + architecture</p>
+        <h1 className="mt-4 max-w-4xl text-3xl font-bold leading-tight text-slate-100 sm:text-5xl">
+          <span className="text-fuchsia-300">{title}</span>
+        </h1>
+        <p className="mt-6 max-w-3xl text-sm leading-relaxed text-slate-300">{subtitle}</p>
       </div>
     </section>
   );

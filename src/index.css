@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #8b5cf6;
-  --color-accent: #c4b5fd;
-  --color-surface: #0f1017;
+  --color-primary: #22d3ee;
+  --color-accent: #e879f9;
+  --color-surface: #08070f;
 }
 
 html,
@@ -20,8 +20,9 @@ html {
 
 body {
   margin: 0;
-  background: #0f1017;
+  background: #08070f;
   color: #e2e8f0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

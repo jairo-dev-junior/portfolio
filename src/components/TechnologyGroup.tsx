@@ -8,14 +8,14 @@ export interface TechnologyGroupProps {
 
 export function TechnologyGroup({ title, items }: TechnologyGroupProps) {
   return (
-    <div className="space-y-2">
-      <h3 className="text-sm font-medium text-slate-100">{title}</h3>
+    <div>
+      <h3 className="mb-2 font-mono text-[11px] uppercase tracking-[0.14em] text-fuchsia-300">{title}</h3>
       <div className="flex flex-wrap gap-2">
         {items.map((item) => {
           const Icon = techIcons[item];
           return (
-            <span key={item} className="inline-flex items-center gap-2 rounded-md border border-slate-700 bg-[#10121b] px-2 py-1 text-xs text-slate-200">
-              {Icon ? <Icon className="h-3.5 w-3.5" aria-hidden="true" /> : null}
+            <span key={item} className="inline-flex items-center gap-1.5 border border-slate-700/90 px-2 py-1 text-[11px] text-slate-200">
+              {Icon ? <Icon className="h-3 w-3 text-cyan-300" aria-hidden="true" /> : null}
               {item}
             </span>
           );

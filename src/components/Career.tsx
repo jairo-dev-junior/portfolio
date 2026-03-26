@@ -13,17 +13,18 @@ export function Career({ title }: CareerProps) {
   ];
 
   return (
-    <section id="carreira" className="relative scroll-mt-24">
-      <div className="mx-auto max-w-5xl px-4 py-10">
-        <h2 className="mb-4 text-lg font-semibold text-slate-100">{title}</h2>
-        <ol className="space-y-3">
+    <section id="carreira" className="relative border-b border-slate-800/80 scroll-mt-24">
+      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-14 md:grid-cols-[180px_1fr]">
+        <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-300">{title}</h2>
+        <ol className="border-l border-fuchsia-400/30 pl-4">
           {jobs.map((job) => (
-            <li key={job.empresa} className="rounded-2xl border border-violet-500/20 bg-[#151624] p-4">
+            <li key={job.empresa} className="relative mb-6 last:mb-0">
+              <span className="absolute -left-[21px] top-1.5 h-2 w-2 bg-fuchsia-300" />
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="text-sm font-semibold text-slate-100">{job.empresa}</p>
-                <p className="text-xs text-slate-400">{job.periodo}</p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-slate-500">{job.periodo}</p>
               </div>
-              <p className="mt-1 text-xs text-violet-200">{job.cargo}</p>
+              <p className="mt-1 text-xs uppercase tracking-[0.08em] text-cyan-300">{job.cargo}</p>
               <p className="mt-1 text-sm text-slate-300">{job.resumo}</p>
             </li>
           ))}
