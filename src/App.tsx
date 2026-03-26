@@ -6,6 +6,7 @@ import Contacts from './components/Contacts';
 import Footer from './components/Footer';
 import Highlights from './components/Highlights';
 import StackCarousel from './components/StackCarousel';
+import ImageCarousel from './components/ImageCarousel';
 import useTheme from './hooks/useTheme';
 import useLocale from './hooks/useLocale';
 import usePaletteFromImage from './hooks/usePaletteFromImage';
@@ -51,6 +52,7 @@ function App() {
         onNavigate={handleNavigate}
       />
       <Hero title={t.hero.title} subtitle={t.hero.subtitle} btnView={t.hero.btnView} btnSite={t.hero.btnSite} />
+      <ImageCarousel />
       <Highlights
         projectsTitle={t.projects.title}
         projectsSubtitle={t.projects.subtitle}

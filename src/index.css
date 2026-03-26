@@ -67,37 +67,15 @@ body {
 }
 
 
-@keyframes typing-wipe {
-  from { transform: translateX(0); }
-  to { transform: translateX(101%); }
-}
-
 @keyframes blink-caret {
   0%, 100% { opacity: 0; }
   50% { opacity: 1; }
 }
 
-.typing-title {
-  position: relative;
+
+.typing-caret {
   display: inline-block;
-}
-
-.typing-title::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: #f8fafc;
-  border-left: 2px solid rgba(34, 211, 238, 0.9);
-  animation: typing-wipe 2.6s steps(36, end) forwards, blink-caret 0.8s step-end 4;
-}
-
-.dark .typing-title::after {
-  background: #0b0b11;
-}
-
-@media (max-width: 768px) {
-  .typing-title::after {
-    animation: none;
-    display: none;
-  }
+  margin-left: 4px;
+  color: rgb(34 211 238);
+  animation: blink-caret 0.9s step-end infinite;
 }
