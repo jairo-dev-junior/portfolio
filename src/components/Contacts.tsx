@@ -12,7 +12,7 @@ export function Contacts({ locationLabel, githubLabel, linkedinLabel, devtoLabel
   return (
     <section id="contatos" className="relative scroll-mt-24">
       <div className="mx-auto grid max-w-6xl gap-6 px-4 py-14 md:grid-cols-[180px_1fr]">
-        <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">contato</h2>
+        <h2 className="font-mono text-[17px] uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">contato</h2>
         <div className="space-y-3 text-sm text-slate-700 dark:text-slate-300">
           <p><FaMapMarkerAlt className="mr-2 inline text-cyan-700 dark:text-cyan-300" />{locationLabel}</p>
           <p><FaPhone className="mr-2 inline text-cyan-700 dark:text-cyan-300" />+55 14 988-051-895</p>

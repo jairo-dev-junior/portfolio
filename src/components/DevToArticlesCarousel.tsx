@@ -49,7 +49,7 @@ export function DevToArticlesCarousel({ title, subtitle, emptyLabel }: DevToArti
   return (
     <section id="artigos" className="parallax-section relative border-b border-slate-300/80 py-12 dark:border-slate-800/80">
       <div className="mx-auto max-w-6xl px-4">
-        <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{title}</h2>
+        <h2 className="font-mono text-[17px] uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{title}</h2>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{subtitle}</p>
 
         {articles.length === 0 ? (

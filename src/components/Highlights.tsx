@@ -85,7 +85,7 @@ export function Highlights({
     <section className="parallax-section relative border-b border-slate-300/80 py-14 dark:border-slate-800/80">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 lg:grid-cols-2">
         <div id="projetos">
-          <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{githubTitle}</h2>
+          <h2 className="font-mono text-[17px] uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{githubTitle}</h2>
           <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{githubSubtitle}</p>
           <div className="mt-4 space-y-2">
             {repos.length === 0 && <p className="text-sm text-slate-500">{githubEmpty}</p>}
@@ -102,7 +102,7 @@ export function Highlights({
         </div>
 
         <div id="carreira">
-          <h2 className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{careerTitle}</h2>
+          <h2 className="font-mono text-[17px] uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{careerTitle}</h2>
           <ol className="mt-4 space-y-3">
             {experiences.map((job) => (
               <li key={`${job.empresa}-${job.periodo}`} className="border-b border-slate-300/80 pb-3 dark:border-slate-800/80">
