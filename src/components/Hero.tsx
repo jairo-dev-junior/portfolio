@@ -31,7 +31,7 @@ export function Hero({ title, subtitle }: HeroProps) {
         <p className="font-mono text-xs uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">backend engineer</p>
 
         <div className="relative mt-4 max-w-5xl">
-          <h1 className="max-w-4xl text-4xl font-bold leading-tight text-slate-900 dark:text-slate-100 sm:text-6xl">
+          <h1 className="hero-neon-title max-w-4xl text-4xl font-bold leading-tight text-slate-900 dark:text-slate-100 sm:text-6xl">
             <span className="text-fuchsia-700 dark:text-fuchsia-300">{typedTitle}</span>
             <span aria-hidden="true" className="typing-caret">|</span>
           </h1>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -87,4 +89,11 @@ body {
 
 .gallery-item:hover {
   animation: glow-border 1.2s ease-in-out infinite alternate;
+}
+
+.hero-neon-title {
+  font-family: "Orbitron", "Rajdhani", "Segoe UI", sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.35), 0 0 18px rgba(217, 70, 239, 0.2);
 }
