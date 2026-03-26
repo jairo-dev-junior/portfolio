@@ -19,8 +19,8 @@ export function StackCarousel({ title }: StackCarouselProps) {
             {loop.map((item, index) => {
               const Icon = techIcons[item];
               return (
-                <span key={`${item}-${index}`} className="inline-flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-200">
-                  {Icon ? <Icon className="h-5 w-5 text-cyan-700 dark:text-cyan-300" /> : null}
+                <span key={`${item}-${index}`} className="inline-flex items-center gap-2 text-[24px] font-medium text-slate-700 dark:text-slate-200">
+                  {Icon ? <Icon className="h-8 w-8 text-cyan-700 dark:text-cyan-300" /> : null}
                   {item}
                 </span>
               );
