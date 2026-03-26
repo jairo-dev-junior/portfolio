@@ -3,20 +3,25 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #2563eb;
-  --color-accent: #1d4ed8;
-  --color-surface: #ffffff;
+  --color-primary: #8b5cf6;
+  --color-accent: #c4b5fd;
+  --color-surface: #0f1017;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
-/* Scroll suave nativo */
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
-/* Tipografia e suavização */
 body {
+  margin: 0;
+  background: #0f1017;
+  color: #e2e8f0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-} 
+}

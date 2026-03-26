@@ -2,38 +2,48 @@ export type Locale = 'pt' | 'en';
 
 export const messages = {
   pt: {
-    menu: { sobre: 'Sobre', tecnologias: 'Tecnologias', carreira: 'Carreira', contatos: 'Contatos' },
+    menu: { sobre: 'Sobre', tecnologias: 'Stack', projetos: 'Projetos', carreira: 'Carreira', contatos: 'Contatos' },
     hero: {
-      title: 'Programador, músico e seguidor de Jesus Cristo',
-      subtitle: 'Olá, sou Jairo Junior, desenvolvedor e entusiasta de tecnologia. Atuo principalmente em backend com Java/Kotlin (Spring, Micronaut) e bancos relacionais, e no frontend com JavaScript/React. Apaixonado por performance, escalabilidade e código limpo.',
+      title: 'Backend Engineer que entrega software rápido, limpo e escalável',
+      subtitle: 'Construo APIs, integrações e arquitetura para sistemas que precisam performar. Java/Kotlin, Spring/Micronaut, bancos relacionais e observabilidade fazem parte do meu dia a dia.',
       btnView: 'Ver Tecnologias',
       btnSite: 'Ver site atual',
     },
     about: {
-      title: 'Quem sou eu?',
-      text: 'Amo tudo vinculado com programação e estou na jornada para me tornar um desenvolvedor completo em diferentes áreas. Tenho conhecimento em Java, Kotlin, JavaScript, MySQL, PostgreSQL, Spring, React, entre outras tecnologias. No que eu puder te ajudar, é só chamar!',
+      title: 'Meu perfil',
+      text: 'Sou desenvolvedor com foco em backend e visão de produto. Gosto de resolver problemas de negócio com código simples, testes e boa arquitetura. Também atuo com frontend quando necessário para fechar entregas com qualidade ponta a ponta.',
     },
-    tech: { title: 'Tecnologias', backend: 'Backend', frontend: 'Frontend' },
-    career: { title: 'Carreira' },
+    tech: { title: 'Stack principal', backend: 'Backend', frontend: 'Frontend de apoio' },
+    projects: {
+      title: 'Repositórios do GitHub',
+      subtitle: 'Seleção automática dos meus repositórios públicos, com descrições curtas extraídas do README de cada projeto.',
+      empty: 'Não consegui carregar os repositórios agora. Tente novamente em instantes.'
+    },
+    career: { title: 'Experiência profissional' },
     contacts: { location: 'Lins, São Paulo', github: 'GitHub', linkedin: 'LinkedIn', site: 'Site' },
     downloadCV: 'Baixar CV',
   },
   en: {
-    menu: { sobre: 'About', tecnologias: 'Tech', carreira: 'Career', contatos: 'Contacts' },
+    menu: { sobre: 'About', tecnologias: 'Stack', projetos: 'Projects', carreira: 'Career', contatos: 'Contacts' },
     hero: {
-      title: 'Programmer, musician and follower of Jesus Christ',
-      subtitle: "Hi, I'm Jairo Junior, developer and tech enthusiast. I mainly work on backend with Java/Kotlin (Spring, Micronaut) and relational databases, and on the frontend with JavaScript/React. Passionate about performance, scalability and clean code.",
+      title: 'Backend Engineer focused on fast, clean and scalable delivery',
+      subtitle: 'I build APIs, integrations and architecture for systems that need to perform. Java/Kotlin, Spring/Micronaut, relational databases and observability are my daily tools.',
       btnView: 'View Tech',
       btnSite: 'View current site',
     },
     about: {
-      title: 'Who am I?',
-      text: 'I love everything related to programming and I am on a journey to become a complete developer in different areas. I have knowledge in Java, Kotlin, JavaScript, MySQL, PostgreSQL, Spring, React, among other technologies. If I can help you, just call me!',
+      title: 'Profile',
+      text: 'I am a backend-focused developer with product mindset. I like solving business problems with simple code, tests and clear architecture. I also work on frontend when needed to deliver end-to-end quality.',
     },
-    tech: { title: 'Technologies', backend: 'Backend', frontend: 'Frontend' },
-    career: { title: 'Career' },
+    tech: { title: 'Main stack', backend: 'Backend', frontend: 'Support frontend' },
+    projects: {
+      title: 'GitHub repositories',
+      subtitle: 'Automatic selection of my public repositories with short descriptions extracted from each project README.',
+      empty: 'I could not load repositories right now. Please try again soon.'
+    },
+    career: { title: 'Professional experience' },
     contacts: { location: 'Lins, São Paulo', github: 'GitHub', linkedin: 'LinkedIn', site: 'Site' },
     downloadCV: 'Download CV',
   }
 } as const;
-export type Messages = typeof messages; 
+export type Messages = typeof messages;

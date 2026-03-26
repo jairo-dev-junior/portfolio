@@ -7,6 +7,7 @@ import Technologies from './components/Technologies';
 import Career from './components/Career';
 import Contacts from './components/Contacts';
 import Footer from './components/Footer';
+import GitHubProjects from './components/GitHubProjects';
 import useTheme from './hooks/useTheme';
 import useLocale from './hooks/useLocale';
 import usePaletteFromImage from './hooks/usePaletteFromImage';
@@ -31,7 +32,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-slate-800 dark:bg-[#0b0d12] dark:text-slate-200">
+    <div className="min-h-screen bg-[#0b0b11] text-slate-100">
       <Background />
       <Header
         labels={t.menu}
@@ -45,6 +46,7 @@ function App() {
       <Hero title={t.hero.title} subtitle={t.hero.subtitle} btnView={t.hero.btnView} btnSite={t.hero.btnSite} />
       <About title={t.about.title} text={t.about.text} />
       <Technologies title={t.tech.title} backendLabel={t.tech.backend} frontendLabel={t.tech.frontend} />
+      <GitHubProjects title={t.projects.title} subtitle={t.projects.subtitle} emptyMessage={t.projects.empty} />
       <Career title={t.career.title} />
       <Contacts
         locationLabel={t.contacts.location}
@@ -57,4 +59,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

@@ -11,19 +11,20 @@ export function Career({ title }: CareerProps) {
     { empresa: 'Vibe', cargo: 'Full Stack', periodo: '02/2020 - 10/2020', resumo: 'Backend em Java (Play Framework) e frontend com AngularJS.' },
     { empresa: 'AGTI', cargo: 'Full Stack', periodo: '05/2019 - 05/2020', resumo: 'Criação de plugins para Prestashop (PHP).' },
   ];
+
   return (
     <section id="carreira" className="relative scroll-mt-24">
-      <div className="mx-auto max-w-7xl px-4 py-12">
-        <h2 className="mb-6 text-center text-xl font-bold text-slate-900 dark:text-slate-100">{title}</h2>
-        <ol className="relative space-y-6">
+      <div className="mx-auto max-w-5xl px-4 py-10">
+        <h2 className="mb-4 text-lg font-semibold text-slate-100">{title}</h2>
+        <ol className="space-y-3">
           {jobs.map((job) => (
-            <li key={job.empresa} className="rounded-3xl bg-white/60 p-6 shadow-sm backdrop-blur transition hover:shadow-md dark:bg-slate-900/50">
+            <li key={job.empresa} className="rounded-2xl border border-violet-500/20 bg-[#151624] p-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">{job.empresa}</p>
-                <p className="text-xs text-slate-600 dark:text-slate-400">{job.periodo}</p>
+                <p className="text-sm font-semibold text-slate-100">{job.empresa}</p>
+                <p className="text-xs text-slate-400">{job.periodo}</p>
               </div>
-              <p className="mt-1 text-xs font-medium text-slate-700 dark:text-slate-300">{job.cargo}</p>
-              <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{job.resumo}</p>
+              <p className="mt-1 text-xs text-violet-200">{job.cargo}</p>
+              <p className="mt-1 text-sm text-slate-300">{job.resumo}</p>
             </li>
           ))}
         </ol>
@@ -31,4 +32,5 @@ export function Career({ title }: CareerProps) {
     </section>
   );
 }
-export default Career; 
+
+export default Career;
