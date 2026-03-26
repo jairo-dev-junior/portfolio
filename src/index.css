@@ -55,3 +55,13 @@ body {
 .scan-line {
   animation: scan 12s linear infinite;
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.parallax-section {
+  transform: translateY(calc(var(--parallax-offset, 0px) * 0.15));
+  will-change: transform;
+}

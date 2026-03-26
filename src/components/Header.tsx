@@ -4,7 +4,7 @@ import { FiMoon, FiSun } from 'react-icons/fi';
 import type { Locale } from '../hooks/useLocale';
 
 interface HeaderProps {
-  labels: { sobre: string; tecnologias: string; projetos: string; carreira: string; contatos: string };
+  labels: { tecnologias: string; projetos: string; carreira: string; contatos: string };
   downloadCVLabel: string;
   isDark: boolean;
   toggleTheme: () => void;
@@ -21,7 +21,6 @@ export function Header({ labels, downloadCVLabel, isDark, toggleTheme, locale, s
 
         <nav className="hidden items-center gap-5 md:flex">
           {[
-            { href: '#sobre', label: labels.sobre },
             { href: '#tecnologias', label: labels.tecnologias },
             { href: '#projetos', label: labels.projetos },
             { href: '#carreira', label: labels.carreira },

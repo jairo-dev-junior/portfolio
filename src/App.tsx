@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Background from './components/Background';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import About from './components/About';
-import Technologies from './components/Technologies';
-import Career from './components/Career';
 import Contacts from './components/Contacts';
 import Footer from './components/Footer';
-import GitHubProjects from './components/GitHubProjects';
+import Highlights from './components/Highlights';
+import StackCarousel from './components/StackCarousel';
 import useTheme from './hooks/useTheme';
 import useLocale from './hooks/useLocale';
 import usePaletteFromImage from './hooks/usePaletteFromImage';
@@ -19,10 +17,19 @@ function App() {
   const t = messages[locale];
   usePaletteFromImage('/images/perfil.jpeg', isDark);
 
+  useEffect(() => {
+    const onScroll = () => {
+      document.documentElement.style.setProperty('--parallax-offset', `${window.scrollY * 0.06}px`);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   function scrollToId(id: string) {
     const target = document.getElementById(id);
     if (!target) return;
-    const y = target.getBoundingClientRect().top + window.scrollY - 80;
+    const y = target.getBoundingClientRect().top + window.scrollY - 70;
     window.scrollTo({ top: y, behavior: 'smooth' });
   }
 
@@ -44,10 +51,13 @@ function App() {
         onNavigate={handleNavigate}
       />
       <Hero title={t.hero.title} subtitle={t.hero.subtitle} btnView={t.hero.btnView} btnSite={t.hero.btnSite} />
-      <About title={t.about.title} text={t.about.text} />
-      <Technologies title={t.tech.title} backendLabel={t.tech.backend} frontendLabel={t.tech.frontend} />
-      <GitHubProjects title={t.projects.title} subtitle={t.projects.subtitle} emptyMessage={t.projects.empty} />
-      <Career title={t.career.title} />
+      <Highlights
+        projectsTitle={t.projects.title}
+        projectsSubtitle={t.projects.subtitle}
+        projectsEmpty={t.projects.empty}
+        careerTitle={t.career.title}
+      />
+      <StackCarousel title={t.tech.title} />
       <Contacts
         locationLabel={t.contacts.location}
         githubLabel={t.contacts.github}
