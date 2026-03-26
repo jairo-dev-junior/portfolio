@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #22d3ee;
-  --color-accent: #e879f9;
-  --color-surface: #08070f;
+  --color-primary: #0284c7;
+  --color-accent: #c026d3;
+  --color-surface: #f8fafc;
 }
 
 html,
@@ -20,9 +20,38 @@ html {
 
 body {
   margin: 0;
-  background: #08070f;
-  color: #e2e8f0;
+  background: #f8fafc;
+  color: #0f172a;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes float-y {
+  0%,
+  100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% { opacity: 0.25; }
+  50% { opacity: 0.55; }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.float-ship {
+  animation: float-y 4s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.scan-line {
+  animation: scan 12s linear infinite;
 }
