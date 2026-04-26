@@ -22,7 +22,9 @@ export const messages = {
     articles: {
       title: 'Grimório de Artigos: aventuras reais em backend',
       subtitle: 'Apenas artigos do meu Dev.to com aprendizados, arquitetura e histórias de produção.',
-      empty: 'Não consegui carregar os artigos agora. Tente novamente em instantes.'
+      empty: 'Não consegui carregar os artigos agora. Tente novamente em instantes.',
+      newArticle: '✨ Leia meu novo artigo no Dev.to!',
+      dismiss: 'Fechar aviso'
     },
     career: {
       title: 'Experiência profissional',
@@ -57,7 +59,9 @@ export const messages = {
     articles: {
       title: 'Article Grimoire: real-world backend quests',
       subtitle: 'Only articles from my Dev.to with lessons learned, architecture choices and production stories.',
-      empty: 'I could not load articles right now. Please try again soon.'
+      empty: 'I could not load articles right now. Please try again soon.',
+      newArticle: '✨ Read my new article on Dev.to!',
+      dismiss: 'Dismiss'
     },
     career: {
       title: 'Professional experience',

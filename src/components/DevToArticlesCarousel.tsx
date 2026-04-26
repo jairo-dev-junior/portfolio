@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { FaDev } from 'react-icons/fa';
 
 interface DevToArticlesCarouselProps {
@@ -15,9 +15,20 @@ interface DevToArticle {
   url: string;
   cover_image: string | null;
   social_image: string;
+  published_at?: string;
+  published_timestamp?: string;
+  reading_time_minutes?: number;
 }
 
 const DEVTO_USERNAME = 'jairo-dev-jr';
+const DEVTO_ENDPOINT = `https://dev.to/api/articles?username=${DEVTO_USERNAME}&page=1&per_page=20`;
+const MIN_READING_TIME_MINUTES = 3;
+const POLLING_INTERVAL_MS = 120000;
+
+function getPublishedDate(article: DevToArticle): number {
+  const date = article.published_timestamp || article.published_at;
+  return date ? new Date(date).getTime() : 0;
+}
 
 export function DevToArticlesCarousel({ title, subtitle, emptyLabel }: DevToArticlesCarouselProps) {
   const [articles, setArticles] = useState<DevToArticle[]>([]);
@@ -25,26 +36,32 @@ export function DevToArticlesCarousel({ title, subtitle, emptyLabel }: DevToArti
   useEffect(() => {
     let active = true;
 
-    async function loadArticles() {
+    async function syncArticles() {
       try {
-        const response = await fetch(`https://dev.to/api/articles?username=${DEVTO_USERNAME}&per_page=10`);
+        const response = await fetch(DEVTO_ENDPOINT);
         const data = (await response.json()) as DevToArticle[];
-        if (!Array.isArray(data)) return;
+        if (!active || !Array.isArray(data)) return;
 
-        const onlyArticles = data.filter((article) => article.type_of === 'article').slice(0, 8);
-        if (active) setArticles(onlyArticles);
+        const longFormArticles = data
+          .filter((article) => article.type_of === 'article' && (article.reading_time_minutes ?? 0) >= MIN_READING_TIME_MINUTES)
+          .sort((a, b) => getPublishedDate(b) - getPublishedDate(a));
+
+        setArticles(longFormArticles.slice(0, 8));
       } catch {
         if (active) setArticles([]);
       }
     }
 
-    loadArticles();
+    syncArticles();
+    const intervalId = window.setInterval(syncArticles, POLLING_INTERVAL_MS);
+
     return () => {
       active = false;
+      window.clearInterval(intervalId);
     };
   }, []);
 
-  const loop = [...articles, ...articles];
+  const loop = useMemo(() => [...articles, ...articles], [articles]);
 
   return (
     <section id="artigos" className="parallax-section relative border-b border-slate-300/80 py-12 dark:border-slate-800/80">

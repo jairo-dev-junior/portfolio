@@ -102,3 +102,19 @@ body {
   font-family: "Exo 2", "Rajdhani", "Segoe UI", sans-serif;
   letter-spacing: 0.03em;
 }
+
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(110%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.popup-slide-in-right {
+  animation: slide-in-right 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}

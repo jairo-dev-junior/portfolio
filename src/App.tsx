@@ -8,6 +8,7 @@ import Highlights from './components/Highlights';
 import StackCarousel from './components/StackCarousel';
 import ImageCarousel from './components/ImageCarousel';
 import DevToArticlesCarousel from './components/DevToArticlesCarousel';
+import DevToLatestArticlePopup from './components/DevToLatestArticlePopup';
 import useTheme from './hooks/useTheme';
 import useLocale from './hooks/useLocale';
 import usePaletteFromImage from './hooks/usePaletteFromImage';
@@ -31,6 +32,7 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-100 text-slate-900 dark:bg-[#0b0b11] dark:text-slate-100">
       <Background />
+      <DevToLatestArticlePopup label={t.articles.newArticle} dismissLabel={t.articles.dismiss} />
       <Header
         downloadCVLabel={t.downloadCV}
         isDark={isDark}
