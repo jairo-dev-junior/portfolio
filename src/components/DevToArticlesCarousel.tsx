@@ -77,22 +77,23 @@ export function DevToArticlesCarousel({
   const loop = useMemo(() => [...articles, ...articles], [articles]);
 
   const topPopup = featuredLatestArticle ? (
-    <div className="popup-slide-in-right fixed right-4 top-4 z-50 w-[min(92vw,380px)] rounded-2xl border border-fuchsia-300/80 bg-gradient-to-br from-white via-fuchsia-50 to-violet-50 p-4 shadow-[0_12px_34px_rgba(168,85,247,0.25)] dark:border-fuchsia-800/80 dark:from-slate-900 dark:via-[#23102f] dark:to-[#1f1b3a]">
-      <p className="text-sm font-semibold tracking-wide text-fuchsia-700 dark:text-fuchsia-300">{newArticleLabel}</p>
+    <div className="popup-slide-in-right fixed right-4 top-4 z-50 w-[min(92vw,380px)] relative rounded-2xl border border-fuchsia-300/80 bg-gradient-to-br from-white via-fuchsia-50 to-violet-50 p-4 pr-10 shadow-[0_12px_34px_rgba(168,85,247,0.25)] dark:border-fuchsia-800/80 dark:from-slate-900 dark:via-[#23102f] dark:to-[#1f1b3a]">
+      <p className="text-base font-bold tracking-wide text-fuchsia-700 dark:text-fuchsia-300">{newArticleLabel}</p>
       <a
         href={featuredLatestArticle.url}
         target="_blank"
         rel="noreferrer"
-        className="mt-1 block text-sm font-medium text-violet-700 underline decoration-fuchsia-400 underline-offset-2 hover:text-fuchsia-700 dark:text-violet-200 dark:hover:text-fuchsia-300"
+        className="mt-1 block text-sm font-bold text-violet-700 hover:text-fuchsia-700 dark:text-violet-200 dark:hover:text-fuchsia-300"
       >
         {featuredLatestArticle.title}
       </a>
       <button
         type="button"
         onClick={() => setFeaturedLatestArticle(null)}
-        className="mt-3 rounded-md border border-fuchsia-200 bg-white/60 px-3 py-1 text-xs text-fuchsia-700 hover:bg-fuchsia-100 dark:border-fuchsia-900 dark:bg-slate-800/50 dark:text-fuchsia-300 dark:hover:bg-fuchsia-950/40"
+        aria-label={dismissLabel}
+        className="absolute right-3 top-2 text-lg font-bold leading-none text-fuchsia-500 hover:text-fuchsia-700 dark:text-fuchsia-300 dark:hover:text-fuchsia-100"
       >
-        {dismissLabel}
+        ×
       </button>
     </div>
   ) : null;
