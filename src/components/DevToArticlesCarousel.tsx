@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { FaDev } from 'react-icons/fa';
 
 interface DevToArticlesCarouselProps {
@@ -75,30 +76,32 @@ export function DevToArticlesCarousel({
 
   const loop = useMemo(() => [...articles, ...articles], [articles]);
 
-  return (
-    <section id="artigos" className="parallax-section relative border-b border-slate-300/80 py-12 dark:border-slate-800/80">
-      {featuredLatestArticle ? (
-        <div className="fixed right-4 top-4 z-50 w-[320px] rounded-xl border border-cyan-300/70 bg-white p-4 shadow-xl dark:border-cyan-700 dark:bg-slate-900">
-          <p className="text-sm font-semibold text-cyan-800 dark:text-cyan-200">{newArticleLabel}</p>
-          <a
-            href={featuredLatestArticle.url}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-1 block text-sm text-slate-700 underline decoration-cyan-400 underline-offset-2 hover:text-cyan-700 dark:text-slate-200 dark:hover:text-cyan-300"
-          >
-            {featuredLatestArticle.title}
-          </a>
-          <button
-            type="button"
-            onClick={() => setFeaturedLatestArticle(null)}
-            className="mt-3 rounded-md border border-slate-300 px-3 py-1 text-xs text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
-          >
-            {dismissLabel}
-          </button>
-        </div>
-      ) : null}
+  const topPopup = featuredLatestArticle ? (
+    <div className="fixed left-1/2 top-4 z-50 w-[min(92vw,520px)] -translate-x-1/2 rounded-xl border border-cyan-300/70 bg-white p-4 shadow-xl dark:border-cyan-700 dark:bg-slate-900">
+      <p className="text-sm font-semibold text-cyan-800 dark:text-cyan-200">{newArticleLabel}</p>
+      <a
+        href={featuredLatestArticle.url}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-1 block text-sm text-slate-700 underline decoration-cyan-400 underline-offset-2 hover:text-cyan-700 dark:text-slate-200 dark:hover:text-cyan-300"
+      >
+        {featuredLatestArticle.title}
+      </a>
+      <button
+        type="button"
+        onClick={() => setFeaturedLatestArticle(null)}
+        className="mt-3 rounded-md border border-slate-300 px-3 py-1 text-xs text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+      >
+        {dismissLabel}
+      </button>
+    </div>
+  ) : null;
 
-      <div className="mx-auto max-w-6xl px-4">
+  return (
+    <>
+      {typeof document !== 'undefined' ? createPortal(topPopup, document.body) : null}
+      <section id="artigos" className="parallax-section relative border-b border-slate-300/80 py-12 dark:border-slate-800/80">
+        <div className="mx-auto max-w-6xl px-4">
         <h2 className="font-mono text-[17px] uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{title}</h2>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{subtitle}</p>
 
@@ -142,8 +145,9 @@ export function DevToArticlesCarousel({
             </div>
           </div>
         )}
-      </div>
-    </section>
+        </div>
+      </section>
+    </>
   );
 }
 
