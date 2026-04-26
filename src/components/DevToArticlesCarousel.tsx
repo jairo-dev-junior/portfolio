@@ -25,7 +25,6 @@ interface DevToArticle {
 const DEVTO_USERNAME = 'jairo-dev-jr';
 const DEVTO_ENDPOINT = `https://dev.to/api/articles?username=${DEVTO_USERNAME}&page=1&per_page=20`;
 const MIN_READING_TIME_MINUTES = 3;
-const NOTIFICATION_STORAGE_KEY = 'devto-last-seen-article-date';
 const POLLING_INTERVAL_MS = 120000;
 
 function getPublishedDate(article: DevToArticle): number {
@@ -41,7 +40,7 @@ export function DevToArticlesCarousel({
   dismissLabel,
 }: DevToArticlesCarouselProps) {
   const [articles, setArticles] = useState<DevToArticle[]>([]);
-  const [newArticle, setNewArticle] = useState<DevToArticle | null>(null);
+  const [featuredLatestArticle, setFeaturedLatestArticle] = useState<DevToArticle | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -59,20 +58,7 @@ export function DevToArticlesCarousel({
         setArticles(longFormArticles.slice(0, 8));
 
         const newestArticle = longFormArticles[0];
-        if (!newestArticle) return;
-
-        const newestDate = getPublishedDate(newestArticle);
-        const lastSeenDate = Number(localStorage.getItem(NOTIFICATION_STORAGE_KEY) || '0');
-
-        if (!lastSeenDate) {
-          localStorage.setItem(NOTIFICATION_STORAGE_KEY, String(newestDate));
-          return;
-        }
-
-        if (newestDate > lastSeenDate) {
-          setNewArticle(newestArticle);
-          localStorage.setItem(NOTIFICATION_STORAGE_KEY, String(newestDate));
-        }
+        setFeaturedLatestArticle(newestArticle ?? null);
       } catch {
         if (active) setArticles([]);
       }
@@ -91,20 +77,20 @@ export function DevToArticlesCarousel({
 
   return (
     <section id="artigos" className="parallax-section relative border-b border-slate-300/80 py-12 dark:border-slate-800/80">
-      {newArticle ? (
+      {featuredLatestArticle ? (
         <div className="fixed right-4 top-4 z-50 w-[320px] rounded-xl border border-cyan-300/70 bg-white p-4 shadow-xl dark:border-cyan-700 dark:bg-slate-900">
           <p className="text-sm font-semibold text-cyan-800 dark:text-cyan-200">{newArticleLabel}</p>
           <a
-            href={newArticle.url}
+            href={featuredLatestArticle.url}
             target="_blank"
             rel="noreferrer"
             className="mt-1 block text-sm text-slate-700 underline decoration-cyan-400 underline-offset-2 hover:text-cyan-700 dark:text-slate-200 dark:hover:text-cyan-300"
           >
-            {newArticle.title}
+            {featuredLatestArticle.title}
           </a>
           <button
             type="button"
-            onClick={() => setNewArticle(null)}
+            onClick={() => setFeaturedLatestArticle(null)}
             className="mt-3 rounded-md border border-slate-300 px-3 py-1 text-xs text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
           >
             {dismissLabel}
