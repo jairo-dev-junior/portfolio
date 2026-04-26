@@ -15,7 +15,7 @@ export function Header({ downloadCVLabel, isDark, toggleTheme, locale, setLocale
     <header className="sticky top-0 z-20 border-b border-cyan-600/20 bg-slate-100/80 backdrop-blur-xl dark:border-cyan-400/20 dark:bg-[#090910]/80">
       <div className="relative mx-auto flex max-w-6xl items-center justify-end px-4 py-3">
         <a href="/" className="absolute left-1/2 -translate-x-1/2 text-center font-mono text-sm uppercase tracking-[0.22em] text-cyan-700 dark:text-cyan-200">
-          JAIRO DEV JUNIOR
+          JAIRO JR SOFTWARE ENGINEER
         </a>
 
         <div className="flex items-center gap-2">
