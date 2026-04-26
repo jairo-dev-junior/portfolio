@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { FaDev } from 'react-icons/fa';
 
 interface DevToArticlesCarouselProps {
   title: string;
   subtitle: string;
   emptyLabel: string;
+  newArticleLabel: string;
+  dismissLabel: string;
 }
 
 interface DevToArticle {
@@ -15,39 +17,101 @@ interface DevToArticle {
   url: string;
   cover_image: string | null;
   social_image: string;
+  published_at?: string;
+  published_timestamp?: string;
+  reading_time_minutes?: number;
 }
 
 const DEVTO_USERNAME = 'jairo-dev-jr';
+const DEVTO_ENDPOINT = `https://dev.to/api/articles?username=${DEVTO_USERNAME}&page=1&per_page=20`;
+const MIN_READING_TIME_MINUTES = 3;
+const NOTIFICATION_STORAGE_KEY = 'devto-last-seen-article-date';
+const POLLING_INTERVAL_MS = 120000;
 
-export function DevToArticlesCarousel({ title, subtitle, emptyLabel }: DevToArticlesCarouselProps) {
+function getPublishedDate(article: DevToArticle): number {
+  const date = article.published_timestamp || article.published_at;
+  return date ? new Date(date).getTime() : 0;
+}
+
+export function DevToArticlesCarousel({
+  title,
+  subtitle,
+  emptyLabel,
+  newArticleLabel,
+  dismissLabel,
+}: DevToArticlesCarouselProps) {
   const [articles, setArticles] = useState<DevToArticle[]>([]);
+  const [newArticle, setNewArticle] = useState<DevToArticle | null>(null);
 
   useEffect(() => {
     let active = true;
 
-    async function loadArticles() {
+    async function syncArticles() {
       try {
-        const response = await fetch(`https://dev.to/api/articles?username=${DEVTO_USERNAME}&per_page=10`);
+        const response = await fetch(DEVTO_ENDPOINT);
         const data = (await response.json()) as DevToArticle[];
-        if (!Array.isArray(data)) return;
+        if (!active || !Array.isArray(data)) return;
 
-        const onlyArticles = data.filter((article) => article.type_of === 'article').slice(0, 8);
-        if (active) setArticles(onlyArticles);
+        const longFormArticles = data
+          .filter((article) => article.type_of === 'article' && (article.reading_time_minutes ?? 0) >= MIN_READING_TIME_MINUTES)
+          .sort((a, b) => getPublishedDate(b) - getPublishedDate(a));
+
+        setArticles(longFormArticles.slice(0, 8));
+
+        const newestArticle = longFormArticles[0];
+        if (!newestArticle) return;
+
+        const newestDate = getPublishedDate(newestArticle);
+        const lastSeenDate = Number(localStorage.getItem(NOTIFICATION_STORAGE_KEY) || '0');
+
+        if (!lastSeenDate) {
+          localStorage.setItem(NOTIFICATION_STORAGE_KEY, String(newestDate));
+          return;
+        }
+
+        if (newestDate > lastSeenDate) {
+          setNewArticle(newestArticle);
+          localStorage.setItem(NOTIFICATION_STORAGE_KEY, String(newestDate));
+        }
       } catch {
         if (active) setArticles([]);
       }
     }
 
-    loadArticles();
+    syncArticles();
+    const intervalId = window.setInterval(syncArticles, POLLING_INTERVAL_MS);
+
     return () => {
       active = false;
+      window.clearInterval(intervalId);
     };
   }, []);
 
-  const loop = [...articles, ...articles];
+  const loop = useMemo(() => [...articles, ...articles], [articles]);
 
   return (
     <section id="artigos" className="parallax-section relative border-b border-slate-300/80 py-12 dark:border-slate-800/80">
+      {newArticle ? (
+        <div className="fixed right-4 top-4 z-50 w-[320px] rounded-xl border border-cyan-300/70 bg-white p-4 shadow-xl dark:border-cyan-700 dark:bg-slate-900">
+          <p className="text-sm font-semibold text-cyan-800 dark:text-cyan-200">{newArticleLabel}</p>
+          <a
+            href={newArticle.url}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-1 block text-sm text-slate-700 underline decoration-cyan-400 underline-offset-2 hover:text-cyan-700 dark:text-slate-200 dark:hover:text-cyan-300"
+          >
+            {newArticle.title}
+          </a>
+          <button
+            type="button"
+            onClick={() => setNewArticle(null)}
+            className="mt-3 rounded-md border border-slate-300 px-3 py-1 text-xs text-slate-600 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800"
+          >
+            {dismissLabel}
+          </button>
+        </div>
+      ) : null}
+
       <div className="mx-auto max-w-6xl px-4">
         <h2 className="font-mono text-[17px] uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{title}</h2>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{subtitle}</p>

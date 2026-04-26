@@ -51,6 +51,8 @@ function App() {
         title={t.articles.title}
         subtitle={t.articles.subtitle}
         emptyLabel={t.articles.empty}
+        newArticleLabel={t.articles.newArticle}
+        dismissLabel={t.articles.dismiss}
       />
       <StackCarousel title={t.tech.title} />
       <Contacts
