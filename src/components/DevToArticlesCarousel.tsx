@@ -1,13 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { FaDev } from 'react-icons/fa';
 
 interface DevToArticlesCarouselProps {
   title: string;
   subtitle: string;
   emptyLabel: string;
-  newArticleLabel: string;
-  dismissLabel: string;
 }
 
 interface DevToArticle {
@@ -33,15 +30,8 @@ function getPublishedDate(article: DevToArticle): number {
   return date ? new Date(date).getTime() : 0;
 }
 
-export function DevToArticlesCarousel({
-  title,
-  subtitle,
-  emptyLabel,
-  newArticleLabel,
-  dismissLabel,
-}: DevToArticlesCarouselProps) {
+export function DevToArticlesCarousel({ title, subtitle, emptyLabel }: DevToArticlesCarouselProps) {
   const [articles, setArticles] = useState<DevToArticle[]>([]);
-  const [featuredLatestArticle, setFeaturedLatestArticle] = useState<DevToArticle | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -57,9 +47,6 @@ export function DevToArticlesCarousel({
           .sort((a, b) => getPublishedDate(b) - getPublishedDate(a));
 
         setArticles(longFormArticles.slice(0, 8));
-
-        const newestArticle = longFormArticles[0];
-        setFeaturedLatestArticle(newestArticle ?? null);
       } catch {
         if (active) setArticles([]);
       }
@@ -76,33 +63,9 @@ export function DevToArticlesCarousel({
 
   const loop = useMemo(() => [...articles, ...articles], [articles]);
 
-  const topPopup = featuredLatestArticle ? (
-    <div className="popup-slide-in-right fixed right-4 top-4 z-50 w-[min(92vw,380px)] relative rounded-2xl border border-fuchsia-300/80 bg-gradient-to-br from-white via-fuchsia-50 to-violet-50 p-4 pr-10 shadow-[0_12px_34px_rgba(168,85,247,0.25)] dark:border-fuchsia-800/80 dark:from-slate-900 dark:via-[#23102f] dark:to-[#1f1b3a]">
-      <p className="text-base font-bold tracking-wide text-fuchsia-700 dark:text-fuchsia-300">{newArticleLabel}</p>
-      <a
-        href={featuredLatestArticle.url}
-        target="_blank"
-        rel="noreferrer"
-        className="mt-1 block text-sm font-bold text-violet-700 hover:text-fuchsia-700 dark:text-violet-200 dark:hover:text-fuchsia-300"
-      >
-        {featuredLatestArticle.title}
-      </a>
-      <button
-        type="button"
-        onClick={() => setFeaturedLatestArticle(null)}
-        aria-label={dismissLabel}
-        className="absolute right-3 top-2 text-lg font-bold leading-none text-fuchsia-500 hover:text-fuchsia-700 dark:text-fuchsia-300 dark:hover:text-fuchsia-100"
-      >
-        ×
-      </button>
-    </div>
-  ) : null;
-
   return (
-    <>
-      {typeof document !== 'undefined' ? createPortal(topPopup, document.body) : null}
-      <section id="artigos" className="parallax-section relative border-b border-slate-300/80 py-12 dark:border-slate-800/80">
-        <div className="mx-auto max-w-6xl px-4">
+    <section id="artigos" className="parallax-section relative border-b border-slate-300/80 py-12 dark:border-slate-800/80">
+      <div className="mx-auto max-w-6xl px-4">
         <h2 className="font-mono text-[17px] uppercase tracking-[0.18em] text-cyan-700 dark:text-cyan-300">{title}</h2>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{subtitle}</p>
 
@@ -146,9 +109,8 @@ export function DevToArticlesCarousel({
             </div>
           </div>
         )}
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 
